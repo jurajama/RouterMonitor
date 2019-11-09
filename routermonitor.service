@@ -1,0 +1,13 @@
+[Unit]
+Description=Huawei router monitoring service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /opt/routermonitor/routermonitor.py
+PIDFile=/var/run/routermonitor.pid
+Restart=always
+RestartSec=20
+
+[Install]
+WantedBy=multi-user.target
