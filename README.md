@@ -9,10 +9,9 @@ The script uses https://pypi.org/project/huawei-lte-api/ as API to command the r
 Tested with Huawei B715s-23c as the router and Raspberry PI as the monitoring device. Used python version 3.4 but should work also with newer 3.x versions.
 
 ## Installation
-- Create directory /opt/routermonitor
-- Copy routermonitor.py to /opt/routermonitor
+- Clone repository to /home/pi/RouterMonitor
 - Edit the global variables in routermonitor.py to match with your environment, at least G_ROUTER_PASSWORD needs to be changed, possibly also G_ROUTER_IP.
-- Install python modules: sudo pip3 install urllib3 requests typing huawei-lte-api
+- Install python modules: sudo pip3 install requests typing huawei-lte-api
 - Tip: If you face runtime failures in some of those libraries, try upgrading it by "pip3 install xxxxx -U"
 - Copy routermonitor.service to /etc/systemd/system/
 - sudo systemctl daemon-reload

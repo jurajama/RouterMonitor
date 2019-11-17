@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/python3 /opt/routermonitor/routermonitor.py
+ExecStart=/usr/bin/python3 /home/pi/RouterMonitor/routermonitor.py
 PIDFile=/var/run/routermonitor.pid
 Restart=always
 RestartSec=20
