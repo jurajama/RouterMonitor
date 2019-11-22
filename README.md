@@ -12,6 +12,7 @@ Tested with Huawei B715s-23c as the router and Raspberry PI as the monitoring de
 - Clone repository to /home/pi/RouterMonitor
 - Edit the global variables in routermonitor.py to match with your environment, at least G_ROUTER_PASSWORD needs to be changed, possibly also G_ROUTER_IP.
 - Install python modules: sudo pip3 install requests typing huawei-lte-api
+- Make sure the latest requests library is used: sudo pip3 install requests -U
 - Tip: If you face runtime failures in some of those libraries, try upgrading it by "pip3 install xxxxx -U"
 - Copy routermonitor.service to /etc/systemd/system/
 - sudo systemctl daemon-reload
