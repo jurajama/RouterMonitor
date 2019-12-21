@@ -6,7 +6,8 @@ The monitoring script is executed in a Linux machine that is in the LAN network 
 
 The script uses https://pypi.org/project/huawei-lte-api/ as API to command the router.
 
-Tested with Huawei B715s-23c as the router and Raspberry PI as the monitoring device. Used python version 3.4 but should work also with newer 3.x versions.
+Tested with Huawei B715s-23c as the router and Raspberry PI as the monitoring device.
+Used python version 3.7 but should work also with older python3 versions.
 
 ## Installation
 - Clone repository to /home/pi/RouterMonitor
@@ -23,6 +24,11 @@ Tested with Huawei B715s-23c as the router and Raspberry PI as the monitoring de
 
 ## Testing and troubleshooting
 
-Initially it may be good to run the script manually to verify functionality. For that set run_as_service to False in main function and run the script with python3.
+Initially it is good to run the script manually in test mode to verify connectivity to the router API.
+Running this command should print information about the router:
+python3 routermonitor.py --test
 
-Good method to cause an artificial break in the internet connection is to disable mobile network connection from the router management GUI front page and then observe from /var/log/syslog of the monitoring machine when routermonitor detects the break and eventually reboots the router.
+If that works, you can start the service. If you want to verify that router reboot logic works, a good method to cause
+an artificial break in the internet connection is to disable mobile network connection from
+the router management GUI front page and then observe from /var/log/syslog of the monitoring machine when routermonitor
+detects the break and eventually reboots the router.

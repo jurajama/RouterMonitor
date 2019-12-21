@@ -1,14 +1,7 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
-import os
-import sys
-import datetime
-import io
-import time
-import traceback
-import requests
+import os, sys, datetime, io, time, traceback, requests, argparse, logging
 
-import logging
 from logging.handlers import RotatingFileHandler
 
 from huawei_lte_api.Client import Client
@@ -53,6 +46,11 @@ class RouterMonitor():
         f = open('/var/run/routermonitor.pid', 'w')
         f.write(pid)
         f.close()
+
+    def testAPI(self):
+        connection = AuthorizedConnection('http://admin:' + G_ROUTER_PASSWORD + '@' + G_ROUTER_IP + '/')
+        client = Client(connection)
+        print(client.device.information())
 
     def performRecovery(self):
         print("routermonitor.py: In performRecovery, rebooting modem")
@@ -99,7 +97,18 @@ if __name__ == '__main__':
 
     logger.error("Routermonitor starting")
 
-    monitor = RouterMonitor(run_as_service = True)
+    parser = argparse.ArgumentParser(description='Huawei mobile router monitor')
+    parser.add_argument("-t", "--test", action='store_true', help="Test router API connection")
+
+    args = parser.parse_args()
+    testmode = args.test
+
+    if testmode:
+        monitor = RouterMonitor(run_as_service = False)
+        monitor.testAPI()
+        sys.exit(0)
+    else:
+        monitor = RouterMonitor(run_as_service = True)
 
     try:
         monitor.start()
